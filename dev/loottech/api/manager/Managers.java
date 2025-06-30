@@ -1,0 +1,117 @@
+package dev.loottech.api.manager;
+
+import dev.loottech.api.manager.client.NetworkManager;
+import dev.loottech.api.manager.command.CommandManager;
+import dev.loottech.api.manager.element.ElementManager;
+import dev.loottech.api.manager.event.EventManager;
+import dev.loottech.api.manager.friend.FriendManager;
+import dev.loottech.api.manager.miscellaneous.AntiCheatManager;
+import dev.loottech.api.manager.miscellaneous.BlockManager;
+import dev.loottech.api.manager.miscellaneous.ConfigManager;
+import dev.loottech.api.manager.miscellaneous.ConnectionManager;
+import dev.loottech.api.manager.miscellaneous.InteractionManager;
+import dev.loottech.api.manager.miscellaneous.LightmapManager;
+import dev.loottech.api.manager.miscellaneous.LookupManager;
+import dev.loottech.api.manager.miscellaneous.MovementManager;
+import dev.loottech.api.manager.miscellaneous.NotificationManager;
+import dev.loottech.api.manager.miscellaneous.PlayerManager;
+import dev.loottech.api.manager.miscellaneous.PositionManager;
+import dev.loottech.api.manager.miscellaneous.SoundManager;
+import dev.loottech.api.manager.miscellaneous.TotemManager;
+import dev.loottech.api.manager.miscellaneous.TotemPopManager;
+import dev.loottech.api.manager.module.ModuleManager;
+import dev.loottech.api.manager.rotation.RotationManager;
+import dev.loottech.api.manager.shader.ShaderManager;
+import dev.loottech.api.manager.waypoint.WaypointManager;
+import dev.loottech.api.utilities.InventoryManager;
+import dev.loottech.api.utilities.TPSUtils;
+import dev.loottech.api.utilities.Util;
+import dev.loottech.client.font.FontManager;
+import dev.loottech.client.font.FontRenderer;
+import dev.loottech.client.gui.click.ClickGuiScreen;
+import dev.loottech.client.gui.hud.HudEditorScreen;
+import java.awt.Color;
+
+public class Managers
+implements Util {
+    public static Color COLOR_CLIPBOARD;
+    public static CommandManager COMMAND;
+    public static EventManager EVENT;
+    public static FriendManager FRIEND;
+    public static ModuleManager MODULE;
+    public static ElementManager ELEMENT;
+    public static PlayerManager PLAYER;
+    public static ClickGuiScreen CLICK_GUI;
+    public static HudEditorScreen HUD_EDITOR;
+    public static ConfigManager CONFIG;
+    public static RotationManager ROTATION;
+    public static FontRenderer FONT;
+    public static TotemPopManager TOTEM_POP;
+    public static NotificationManager NOTIFICATION;
+    public static ShaderManager SHADER;
+    public static LightmapManager LIGHTMAP;
+    public static InteractionManager INTERACTION;
+    public static InventoryManager INVENTORY;
+    public static MovementManager MOVEMENT;
+    public static NetworkManager NETWORK;
+    public static BlockManager BLOCK;
+    public static TotemManager TOTEM;
+    public static LookupManager LOOKUP;
+    public static PositionManager POSITION;
+    public static SoundManager SOUND;
+    public static WaypointManager WAYPOINT;
+    public static ConnectionManager CONNECTION;
+    public static AntiCheatManager ANTICHEAT;
+    private static boolean initialized;
+
+    public static void init() {
+        if (!initialized) {
+            SOUND = new SoundManager();
+            EVENT = new EventManager();
+            COMMAND = new CommandManager();
+            FRIEND = new FriendManager();
+            MODULE = new ModuleManager();
+            ELEMENT = new ElementManager();
+            PLAYER = new PlayerManager();
+            CLICK_GUI = new ClickGuiScreen();
+            HUD_EDITOR = new HudEditorScreen();
+            CONFIG = new ConfigManager();
+            CONFIG.init();
+            CONFIG.loadAutoSaveConfig();
+            new TPSUtils();
+            ROTATION = new RotationManager();
+            FONT = new FontRenderer(FontManager.getFileFromJar(FontManager.INSTANCE.getClass().getClassLoader(), "assets/loottech/font/arial.ttf"), 20.0f, 1.0f, !MODULE.isModuleEnabled("CustomFont"));
+            TOTEM_POP = new TotemPopManager();
+            NOTIFICATION = new NotificationManager();
+            SHADER = new ShaderManager();
+            LIGHTMAP = new LightmapManager();
+            INTERACTION = new InteractionManager();
+            INVENTORY = new InventoryManager();
+            MOVEMENT = new MovementManager();
+            NETWORK = new NetworkManager();
+            BLOCK = new BlockManager();
+            TOTEM = new TotemManager();
+            LOOKUP = new LookupManager();
+            POSITION = new PositionManager();
+            WAYPOINT = new WaypointManager();
+            CONNECTION = new ConnectionManager();
+            ANTICHEAT = new AntiCheatManager();
+            EVENT.register(ROTATION);
+            EVENT.register(TOTEM_POP);
+            EVENT.register(NOTIFICATION);
+            EVENT.register(SHADER);
+            EVENT.register(LIGHTMAP);
+            EVENT.register(INVENTORY);
+            EVENT.register(MOVEMENT);
+            EVENT.register(NETWORK);
+            EVENT.register(BLOCK);
+            EVENT.register(TOTEM);
+            EVENT.register(LOOKUP);
+            EVENT.register(POSITION);
+            EVENT.register(CONNECTION);
+            EVENT.register(CONFIG);
+            EVENT.register(ANTICHEAT);
+            initialized = true;
+        }
+    }
+}

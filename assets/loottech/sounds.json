@@ -1,0 +1,22 @@
+{
+  "kill_sound": {
+    "category": "player",
+    "subtitle": "subtitles.kill",
+    "sounds": [
+      {
+        "name": "loottech:kill",
+        "stream": false
+      }
+    ]
+  },
+  "module_sound": {
+    "category": "player",
+    "subtitle": "subtitles.module",
+    "sounds": [
+      {
+        "name": "loottech:module",
+        "stream": false
+      }
+    ]
+  }
+}

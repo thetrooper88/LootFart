@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "loottech",
+  "version": "0.73+mc1.21.1",
+  "name": "LootTech",
+  "description": "",
+  "authors": [
+    "jaxui",
+    "Fyzz",
+    "DannyEyes"
+  ],
+  "contact": {
+    "sources": "https://github.com/FyzzLive/loottech"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/loottech/icon.png",
+  "accessWidener": "loottech.accesswidener",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.loottech.LootTech"
+    ]
+  },
+  "mixins": [
+    "loottech.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "\u003e\u003d0.16.9",
+    "minecraft": "~1.21.1",
+    "java": "\u003e\u003d21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  },
+  "jars": [
+    {
+      "file": "META-INF/jars/satin-2.0.0.jar"
+    }
+  ]
+}
